@@ -117,7 +117,10 @@ if get_option('fuzz-tests').allowed()
     endif
     fuzz_cpp_args = ['-fsanitize=fuzzer-no-link', '-Wno-missing-prototypes']
     fuzz_link_args = ['-fsanitize=fuzzer']
-    srcfiles_fuzz = files('http/http_connection_fuzzer.cpp')
+    srcfiles_fuzz = files(
+        'http/http_connection_fuzzer.cpp',
+        'http/query_param_fuzzer.cpp',
+        )
     foreach fuzz_src : srcfiles_fuzz
         executable(
             fs.stem(fuzz_src),
